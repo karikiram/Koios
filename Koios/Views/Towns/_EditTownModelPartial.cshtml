@@ -1,0 +1,38 @@
+﻿@model TownDto
+<div class="modal fade" id="addTown">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="addTownLabel">Edit Town</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="EditTown">
+                    <div class="form-group">
+                        <label class="text-danger">Field with * is required</label>
+                        <input type="hidden" asp-for="@Model.TownId" />
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label><label class="text-danger"> *</label>
+                        @Html.DropDownListFor(Model => Model.CountryId, new SelectList(ViewBag.TotalCountries, "CountryId", "CountryName"), new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <label>Town Name</label><label class="text-danger"> *</label>
+                        <input id="TownName" asp-for="TownName" placeholder="Zagreb" class="form-control" required/>
+                        <span id="nonUnique" style="margin-top:5px !important;" class="alert-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Postal Code</label><label class="text-danger"> *</label>
+                        <input asp-for="PostalCode" placeholder="10000" class="form-control" required />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" data-save="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
